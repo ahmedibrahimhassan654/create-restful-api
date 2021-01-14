@@ -12,13 +12,15 @@ const server =http.createServer(function(req, res){
 
     //trim the path 
     var trimedPath=path.replace(/\\/g, '')
-
+    //get the url http method 
     var method=req.method.toLowerCase()
-    
+
+    //get the url query string
+    var queryobject=parseUrl.query
     //send the response
     res.end('hello world\n')
 
-    console.log('request recive at path',trimedPath,'with method '+method);
+    console.log('request recive at path',trimedPath,'with method '+method,'with query string ',queryobject);
 
 
 
