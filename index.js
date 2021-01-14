@@ -13,12 +13,12 @@ const server =http.createServer(function(req, res){
     //trim the path 
     var trimedPath=path.replace(/\\/g, '')
 
-
+    var method=req.method.toLowerCase()
     
     //send the response
     res.end('hello world\n')
 
-    console.log('request recive at path',trimedPath);
+    console.log('request recive at path',trimedPath,'with method '+method);
 
 
 
