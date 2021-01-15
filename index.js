@@ -17,10 +17,15 @@ const server =http.createServer(function(req, res){
 
     //get the url query string
     var queryobject=parseUrl.query
+
+    //get the headers as an object
+
+    var headers=req.headers
+
     //send the response
     res.end('hello world\n')
 
-    console.log('request recive at path',trimedPath,'with method '+method,'with query string ',queryobject);
+    console.log('request header is ',headers);
 
 
 
