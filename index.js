@@ -1,5 +1,6 @@
 var http=require('http')
 var url=require('url')
+var stringDecoder=require('string_decoder').StringDecoder
 //the server should respond to all the request with string
 const server =http.createServer(function(req, res){
 
@@ -22,10 +23,25 @@ const server =http.createServer(function(req, res){
 
     var headers=req.headers
 
-    //send the response
-    res.end('hello world\n')
 
-    console.log('request header is ',headers);
+    //get the payload,if any
+    var decoder=new stringDecoder('utf-8')
+    var buffer=''
+    req.on('data', function(data){
+        buffer+=decoder.write(data)
+    })
+
+    req.on('end', function(){
+        buffer+=decoder.end()
+
+        //send the response
+        res.end('hello world\n')
+
+        console.log('request pauload is ',buffer);
+
+    })
+     
+
 
 
 
